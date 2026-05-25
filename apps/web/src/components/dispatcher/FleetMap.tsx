@@ -61,7 +61,7 @@ export function FleetMap({ vehicles, trips, selectedVehicleId, onVehicleSelect }
       .channel('gps-live')
       .on(
         'postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'gps_locations' },
+        { event: 'INSERT', schema: 'public', table: 'gps_positions' },
         (payload: any) => {
           console.log('GPS update:', payload.new)
           const { vehicle_id, lat, lng } = payload.new
