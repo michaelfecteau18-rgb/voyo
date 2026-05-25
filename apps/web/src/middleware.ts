@@ -3,8 +3,9 @@ import { NextResponse, type NextRequest } from 'next/server'
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get('sb-ghohhebflehmrqzgkqlt-auth-token')
   const isLoginPage = request.nextUrl.pathname.startsWith('/login')
+  const isDriverPage = request.nextUrl.pathname.startsWith('/driver')
 
-  if (!token && !isLoginPage) {
+  if (!token && !isLoginPage && !isDriverPage) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
