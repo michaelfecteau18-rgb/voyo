@@ -1,7 +1,7 @@
 {
-  "name": "VOYO — Transport scolaire",
+  "name": "VOYO Transport scolaire",
   "short_name": "VOYO",
-  "description": "Sachez où est votre enfant. Chaque trajet. Chaque jour.",
+  "description": "Sachez ou est votre enfant. Chaque trajet. Chaque jour.",
   "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#072B57",
