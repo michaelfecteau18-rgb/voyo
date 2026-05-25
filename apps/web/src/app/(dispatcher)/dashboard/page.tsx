@@ -141,11 +141,9 @@ export default function DispatcherDashboard() {
   const totalStudents = activeTrips.reduce((acc, t) => acc + t.students_total, 0)
   const boardedStudents = activeTrips.reduce((acc, t) => acc + t.students_boarded, 0)
 
-  return (
-    <div className="flex h-screen bg-surface overflow-hidden">
-      {/* Sidebar navigation */}
-      {/* Contenu principal */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+return (
+    <div style={{ display: 'flex', height: '100vh', background: '#F5F7FA', overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         {/* Barre supérieure */}
         <header className="bg-white border-b border-navy-100 px-6 py-3 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-4">
@@ -196,9 +194,8 @@ export default function DispatcherDashboard() {
         />
 
         {/* Zone principale */}
-        <div className="flex-1 flex overflow-hidden">
-          {/* Liste véhicules */}
-          <aside className="w-80 bg-white border-r border-navy-100 flex flex-col overflow-hidden shrink-0">
+<div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+          <aside style={{ width: '320px', background: 'white', borderRight: '1px solid #E8EDF4', display: 'flex', flexDirection: 'column', overflow: 'hidden', flexShrink: 0 }}>
             <div className="px-4 py-3 border-b border-navy-100">
               <h2 className="font-poppins font-semibold text-base text-navy-900">
                 Flotte active
@@ -224,7 +221,7 @@ export default function DispatcherDashboard() {
           </aside>
 
           {/* Carte */}
-          <main className="flex-1 relative">
+          <main style={{ flex: 1, position: 'relative' }}>
             <FleetMap
               vehicles={vehicles}
               trips={activeTrips}
