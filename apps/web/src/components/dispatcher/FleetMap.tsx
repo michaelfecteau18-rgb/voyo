@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { createBrowserClient } from '@supabase/ssr'
 
 type ActiveVehicleStatus = any
 type Trip = any
@@ -56,14 +55,39 @@ export function FleetMap({ vehicles, trips, selectedVehicleId, onVehicleSelect }
     return () => map.remove()
   }, [])
 
-  // Realtime GPS
-  useEffect(() => {
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
+// Realtime GPS
+useEffect(() => {
+  const { createBrowserClient } = require('@supabase/ssr')
+  const sb = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 
-    const channel = supabase
+  console.log('Connecting to Realtime...')
+
+  const channel = sb
+    .channel('gps-live')
+    .on(
+      'postgres_changes',
+      { event: 'INSERT', schema: 'public', table: 'gps_locations' },
+      (payload: any) => {
+        console.log('GPS update received:', payload.new)
+        const { vehicle_id, lat, lng } = payload.new
+        const marker = markersRef.current.get(vehicle_id)
+        if (marker) {
+          marker.setLngLat([lng, lat])
+          console.log('Marker moved to:', lat, lng)
+        } else {
+          console.log('No marker found for vehicle:', vehicle_id)
+        }
+      }
+    )
+    .subscribe((status: string) => {
+      console.log('Realtime status:', status)
+    })
+
+  return () => { sb.removeChannel(channel) }
+}, [])
       .channel('gps-realtime')
       .on(
         'postgres_changes',
