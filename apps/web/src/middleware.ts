@@ -4,8 +4,9 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get('sb-ghohhebflehmrqzgkqlt-auth-token')
   const isLoginPage = request.nextUrl.pathname.startsWith('/login')
   const isDriverPage = request.nextUrl.pathname.startsWith('/driver')
+  const isPublicFile = request.nextUrl.pathname.match(/\.(png|jpg|ico|json|js|css|svg|webp)$/)
 
-  if (!token && !isLoginPage && !isDriverPage) {
+  if (!token && !isLoginPage && !isDriverPage && !isPublicFile) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
