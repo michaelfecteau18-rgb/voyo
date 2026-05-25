@@ -9,7 +9,6 @@ type Trip = any
 type Notification = any
 
 // Composants
-import { DispatcherSidebar } from '@/components/dispatcher/Sidebar'
 import { FleetMap } from '@/components/dispatcher/FleetMap'
 import { VehicleList } from '@/components/dispatcher/VehicleList'
 import { AlertsPanel } from '@/components/dispatcher/AlertsPanel'
@@ -145,8 +144,6 @@ export default function DispatcherDashboard() {
   return (
     <div className="flex h-screen bg-surface overflow-hidden">
       {/* Sidebar navigation */}
-      <DispatcherSidebar />
-
       {/* Contenu principal */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Barre supérieure */}
