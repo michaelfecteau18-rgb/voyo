@@ -4,7 +4,9 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { formatDistanceToNow, format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import type { ActiveVehicleStatus, Trip, Notification } from '@voyo/types'
+type ActiveVehicleStatus = any
+type Trip = any
+type Notification = any
 
 // Composants
 import { DispatcherSidebar } from '@/components/dispatcher/Sidebar'

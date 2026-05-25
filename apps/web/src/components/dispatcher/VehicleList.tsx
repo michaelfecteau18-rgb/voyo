@@ -3,7 +3,8 @@
 import { cn } from '@/lib/utils'
 import { formatDistanceToNow } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import type { ActiveVehicleStatus, Trip } from '@voyo/types'
+type ActiveVehicleStatus = any
+type Trip = any
 
 interface VehicleListProps {
   vehicles: ActiveVehicleStatus[]

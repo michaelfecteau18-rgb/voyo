@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import { cn } from '@/lib/utils'
-import type { Notification } from '@voyo/types'
+type Notification = any
 
 interface AlertsPanelProps {
   alerts: Notification[]

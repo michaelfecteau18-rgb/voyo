@@ -5,7 +5,10 @@ import { supabase } from '@/lib/supabase'
 import { format, formatDistanceToNow } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import { cn } from '@/lib/utils'
-import type { ActiveVehicleStatus, Trip, Attendance, TripStop } from '@voyo/types'
+type ActiveVehicleStatus = any
+type Trip = any
+type Attendance = any
+type TripStop = any
 
 interface TripDetailDrawerProps {
   vehicle: ActiveVehicleStatus
