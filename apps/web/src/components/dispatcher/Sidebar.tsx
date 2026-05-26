@@ -71,13 +71,7 @@ export function DispatcherSidebar() {
           </div>
         ) : (
           <>
-            <Image
-              src="/voyo-logo.png"
-              alt="VOYO"
-              width={90}
-              height={40}
-              style={{ objectFit: 'contain' }}
-            />
+<img src="/voyo-logo-dark.png" alt="VOYO" style={{ width: '110px', objectFit: 'contain' }} />
             <button
               onClick={() => setCollapsed(true)}
               style={{
