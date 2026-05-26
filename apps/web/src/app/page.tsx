@@ -26,12 +26,16 @@ export default function Page() {
         href="/login"
         style={{
           background: 'linear-gradient(90deg, #16C7B8, #0ea5e9)',
-          color: 'white', padding: '14px 32px', borderRadius: '12px',
-          textDecoration: 'none', fontWeight: '600', fontSize: '16px',
+          color: 'white',
+          padding: '14px 32px',
+          borderRadius: '12px',
+          textDecoration: 'none',
+          fontWeight: '600',
+          fontSize: '16px',
           marginTop: '16px',
         }}
       >
-        Accéder au portail →
+        Accéder au portail
       </a>
     </div>
   )
