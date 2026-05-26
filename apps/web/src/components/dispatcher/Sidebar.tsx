@@ -76,7 +76,7 @@ export function DispatcherSidebar() {
               alt="VOYO"
               width={90}
               height={40}
-              style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+              style={{ objectFit: 'contain' }}
             />
             <button
               onClick={() => setCollapsed(true)}
