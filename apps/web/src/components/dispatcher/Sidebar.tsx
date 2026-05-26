@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -19,10 +19,10 @@ const CollapseIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill=
 
 const NAV_ITEMS = [
   { href: '/dashboard',     icon: <GridIcon />,    label: 'Tableau de bord' },
-  { href: '/routes',        icon: <RouteIcon />,   label: 'Itinéraires'     },
-  { href: '/students',      icon: <UsersIcon />,   label: 'Élèves'          },
+  { href: '/routes',        icon: <RouteIcon />,   label: 'ItinÃ©raires'     },
+  { href: '/students',      icon: <UsersIcon />,   label: 'Ã‰lÃ¨ves'          },
   { href: '/drivers',       icon: <DriverIcon />,  label: 'Chauffeurs'      },
-  { href: '/vehicles',      icon: <BusIcon />,     label: 'Véhicules'       },
+  { href: '/vehicles',      icon: <BusIcon />,     label: 'VÃ©hicules'       },
   { href: '/messages',      icon: <ChatIcon />,    label: 'Messages'        },
   { href: '/analytics',     icon: <ChartIcon />,   label: 'Analytique'      },
   { href: '/notifications', icon: <BellIcon />,    label: 'Notifications'   },
@@ -45,7 +45,7 @@ export function DispatcherSidebar() {
   return (
     <aside style={{
       width: collapsed ? '64px' : '220px',
-      background: '#072B57',
+      background: '#0a2f6b',
       display: 'flex',
       flexDirection: 'column',
       transition: 'width 0.25s ease',
@@ -154,7 +154,7 @@ export function DispatcherSidebar() {
           }}
         >
           <LogoutIcon />
-          {!collapsed && <span>Déconnexion</span>}
+          {!collapsed && <span>DÃ©connexion</span>}
         </button>
       </div>
     </aside>

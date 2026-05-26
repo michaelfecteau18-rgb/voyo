@@ -1,4 +1,4 @@
-import { DispatcherSidebar } from '@/components/dispatcher/Sidebar'
+﻿import { DispatcherSidebar } from '@/components/dispatcher/Sidebar'
 
 export default function DispatcherLayout({ children }: { children: React.ReactNode }) {
   return (
