@@ -46,12 +46,17 @@ export function DispatcherSidebar() {
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '20px 16px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
         <div style={{ width: '32px', height: '32px', background: '#16C7B8', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <span style={{ color: 'white', fontWeight: '700', fontSize: '14px' }}>V</span>
-        </div>
-        {!collapsed && <span style={{ color: 'white', fontWeight: '700', fontSize: '18px' }}>VOYO</span>}
-        <button onClick={() => setCollapsed(!collapsed)} style={{ marginLeft: 'auto', background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', padding: '4px' }}>
-          ☰
-        </button>
-      </div>
+import Image from 'next/image'
+// ... dans le JSX :
+<div style={{ padding: '24px 20px 16px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+  <Image
+    src="/voyo-logo.png"
+    alt="VOYO"
+    width={100}
+    height={44}
+    style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+  />
+</div>
 
       <nav style={{ flex: 1, padding: '16px 8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
         {NAV_ITEMS.map(item => {

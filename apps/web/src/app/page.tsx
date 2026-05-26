@@ -1,8 +1,38 @@
+import Image from 'next/image'
+
 export default function Page() {
   return (
-    <div style={{ fontFamily: "sans-serif", padding: "40px", background: "#072B57", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-      <h1 style={{ color: "#16C7B8", fontSize: "48px", fontWeight: "700", margin: "0" }}>VOYO</h1>
-      <p style={{ color: "white", fontSize: "18px", marginTop: "16px" }}>Transport scolaire en temps reel</p>
+    <div style={{
+      fontFamily: 'Inter, sans-serif',
+      background: 'linear-gradient(135deg, #0a2540 0%, #072B57 100%)',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '24px',
+    }}>
+      <Image
+        src="/voyo-logo.png"
+        alt="VOYO"
+        width={220}
+        height={96}
+        style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+      />
+      <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '18px', margin: 0 }}>
+        Transport scolaire en temps réel
+      </p>
+      
+        href="/login"
+        style={{
+          background: 'linear-gradient(90deg, #16C7B8, #0ea5e9)',
+          color: 'white', padding: '14px 32px', borderRadius: '12px',
+          textDecoration: 'none', fontWeight: '600', fontSize: '16px',
+          marginTop: '16px',
+        }}
+      >
+        Accéder au portail →
+      </a>
     </div>
   )
 }
