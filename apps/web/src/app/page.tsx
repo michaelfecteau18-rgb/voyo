@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 export default function Page() {
   return (
     <div style={{
@@ -12,12 +10,10 @@ export default function Page() {
       justifyContent: 'center',
       gap: '24px',
     }}>
-      <Image
+      <img
         src="/voyo-logo.png"
         alt="VOYO"
-        width={220}
-        height={96}
-        style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+        style={{ width: '200px', objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
       />
       <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '18px', margin: 0 }}>
         Transport scolaire en temps réel
@@ -32,7 +28,6 @@ export default function Page() {
           textDecoration: 'none',
           fontWeight: '600',
           fontSize: '16px',
-          marginTop: '16px',
         }}
       >
         Accéder au portail
