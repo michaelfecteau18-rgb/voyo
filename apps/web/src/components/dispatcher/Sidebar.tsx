@@ -1,6 +1,5 @@
-﻿'use client'
+'use client'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { createBrowserClient } from '@supabase/ssr'
@@ -16,13 +15,14 @@ const ChartIcon  = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="n
 const BellIcon   = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
 const LogoutIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
 const CollapseIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg>
+const ExpandIcon   = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
 
 const NAV_ITEMS = [
   { href: '/dashboard',     icon: <GridIcon />,    label: 'Tableau de bord' },
-  { href: '/routes',        icon: <RouteIcon />,   label: 'ItinÃ©raires'     },
-  { href: '/students',      icon: <UsersIcon />,   label: 'Ã‰lÃ¨ves'          },
+  { href: '/routes',        icon: <RouteIcon />,   label: 'Itineraires'     },
+  { href: '/students',      icon: <UsersIcon />,   label: 'Eleves'          },
   { href: '/drivers',       icon: <DriverIcon />,  label: 'Chauffeurs'      },
-  { href: '/vehicles',      icon: <BusIcon />,     label: 'VÃ©hicules'       },
+  { href: '/vehicles',      icon: <BusIcon />,     label: 'Vehicules'       },
   { href: '/messages',      icon: <ChatIcon />,    label: 'Messages'        },
   { href: '/analytics',     icon: <ChartIcon />,   label: 'Analytique'      },
   { href: '/notifications', icon: <BellIcon />,    label: 'Notifications'   },
@@ -43,118 +43,38 @@ export function DispatcherSidebar() {
   }
 
   return (
-    <aside style={{
-      width: collapsed ? '64px' : '220px',
-      background: '#0a2f6b',
-      display: 'flex',
-      flexDirection: 'column',
-      transition: 'width 0.25s ease',
-      flexShrink: 0,
-      overflow: 'hidden',
-    }}>
-
-      {/* Logo */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: collapsed ? 'center' : 'space-between',
-        padding: collapsed ? '20px 0' : '20px 16px',
-        borderBottom: '1px solid rgba(255,255,255,0.1)',
-        minHeight: '72px',
-      }}>
+    <aside style={{ width: collapsed ? '64px' : '220px', background: '#02214e', display: 'flex', flexDirection: 'column', transition: 'width 0.25s ease', flexShrink: 0, overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: collapsed ? 'center' : 'space-between', padding: '12px', borderBottom: '1px solid rgba(255,255,255,0.1)', minHeight: '72px' }}>
         {collapsed ? (
-          <div style={{
-            width: '32px', height: '32px', background: '#16C7B8',
-            borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <span style={{ color: 'white', fontWeight: '800', fontSize: '16px' }}>V</span>
-          </div>
+          <button onClick={() => setCollapsed(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.5)', display: 'flex' }}>
+            <ExpandIcon />
+          </button>
         ) : (
           <>
-<img src="/voyo-logo-dark.png" alt="VOYO" style={{ width: '110px', objectFit: 'contain' }} />
-            <button
-              onClick={() => setCollapsed(true)}
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                color: 'rgba(255,255,255,0.4)', padding: '4px', borderRadius: '4px',
-                display: 'flex', alignItems: 'center',
-              }}
-            >
+            <img src="/voyo-logo-dark.png" alt="VOYO" style={{ width: '120px', display: 'block' }} />
+            <button onClick={() => setCollapsed(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.4)', display: 'flex' }}>
               <CollapseIcon />
             </button>
           </>
         )}
       </div>
 
-      {/* Expand button when collapsed */}
-      {collapsed && (
-        <button
-          onClick={() => setCollapsed(false)}
-          style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            color: 'rgba(255,255,255,0.4)', padding: '12px 0',
-            display: 'flex', justifyContent: 'center',
-            borderBottom: '1px solid rgba(255,255,255,0.05)',
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="9 18 15 12 9 6"/>
-          </svg>
-        </button>
-      )}
-
-      {/* Nav */}
       <nav style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
         {NAV_ITEMS.map(item => {
           const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              title={collapsed ? item.label : undefined}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                padding: '10px 12px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                color: isActive ? '#16C7B8' : 'rgba(255,255,255,0.55)',
-                background: isActive ? 'rgba(22,199,184,0.12)' : 'transparent',
-                fontSize: '14px',
-                fontWeight: isActive ? '600' : '400',
-                transition: 'all 0.15s',
-                justifyContent: collapsed ? 'center' : 'flex-start',
-              }}
-            >
+            <Link key={item.href} href={item.href} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px', borderRadius: '8px', textDecoration: 'none', color: isActive ? '#16C7B8' : 'rgba(255,255,255,0.6)', background: isActive ? 'rgba(22,199,184,0.12)' : 'transparent', fontSize: '14px', fontWeight: isActive ? '600' : '400', justifyContent: collapsed ? 'center' : 'flex-start' }}>
               <span style={{ flexShrink: 0 }}>{item.icon}</span>
-              {!collapsed && <span style={{ whiteSpace: 'nowrap' }}>{item.label}</span>}
+              {!collapsed && <span>{item.label}</span>}
             </Link>
           )
         })}
       </nav>
 
-      {/* Footer */}
       <div style={{ padding: '8px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-        <button
-          onClick={handleSignOut}
-          style={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            padding: '10px 12px',
-            borderRadius: '8px',
-            background: 'none',
-            border: 'none',
-            color: 'rgba(255,255,255,0.4)',
-            cursor: 'pointer',
-            fontSize: '14px',
-            justifyContent: collapsed ? 'center' : 'flex-start',
-          }}
-        >
+        <button onClick={handleSignOut} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px', borderRadius: '8px', background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', fontSize: '14px', justifyContent: collapsed ? 'center' : 'flex-start' }}>
           <LogoutIcon />
-          {!collapsed && <span>DÃ©connexion</span>}
+          {!collapsed && <span>Deconnexion</span>}
         </button>
       </div>
     </aside>
